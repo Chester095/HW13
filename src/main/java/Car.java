@@ -16,7 +16,7 @@ public class Car implements Runnable {
         this.race = race;
         this.speed = speed;
         CARS_COUNT++;
-        this.name = "Участник #" + CARS_COUNT;
+        this.name = "Участник № " + CARS_COUNT;
     }
 
     @Override
