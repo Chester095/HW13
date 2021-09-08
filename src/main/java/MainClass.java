@@ -1,8 +1,12 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 
-public class MainClass {
-    public static final int CARS_COUNT = 4;
+public class  MainClass {
+    public static final int CARS_COUNT = 7;
+    public static int startCounter = 1;
+    public static int finishCounter = CARS_COUNT;
+    public static final CountDownLatch cdl = new CountDownLatch(CARS_COUNT);
+    public static final Semaphore smp = new Semaphore(CARS_COUNT/2);
 
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
@@ -12,8 +16,8 @@ public class MainClass {
 
         // создаём несколько участников
         Car[] cars = new Car[CARS_COUNT];
-        //TODO выяснить что делает Race
-        //для каждого участника задаём Race и произвольную скорость(20-29)
+
+        //для каждого участника задаём Race (длина трассы, длина тунеля, длина дороги) и произвольную скорость(20-29)
         for (int i = 0; i < cars.length; i++) {
             cars[i] = new Car(race, 20 + (int) (Math.random() * 10));
         }
@@ -22,8 +26,10 @@ public class MainClass {
         for (int i = 0; i < cars.length; i++) {
             new Thread(cars[i]).start();
         }
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
-//        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+
+
+
+
     }
 }
 
